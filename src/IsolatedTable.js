@@ -14,8 +14,8 @@ class IsolatedTable extends Component {
         }
 
         this.dataSource = new RestDataSource('http://192.168.87.62:7799/api/Login/test',
-            () => { console.log('error') }
-            //    (err) => props.history.push(`/error/${err}`)
+            //(i) => { console.log('error') }
+            (err) => this.props.history.push(`/error/${err}`)
         );
         //this.props.dataSource || new RestDataSource('http://localhost:63676/api/Login/test');
     }
@@ -23,10 +23,12 @@ class IsolatedTable extends Component {
     deleteBadge(badge) {
         console.log(badge);
 
-        this.dataSource.Delete(
-            badge,
-            () => this.setState({ badgeList: this.state.badgeList.filter(p => p.id !== badge.id) })
-        );
+        // this.dataSource.Delete(
+        //     badge,
+        //     () => this.setState({ badgeList: this.state.badgeList.filter(p => p.id !== badge.id) })
+        // );
+
+        this.setState({ badgeList: this.state.badgeList.filter(p => p.id !== badge.id)});
     }
 
 
@@ -81,7 +83,7 @@ class IsolatedTable extends Component {
 
 
 
-        // Axios.get('http://192.168.87.62:7799/api/Login/test')
+        //  Axios.get('http://192.168.87.62:7799/api/Login/test')
         //     .then(response => console.log(response.data));
     }
 }
