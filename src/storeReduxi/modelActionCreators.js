@@ -1,4 +1,4 @@
-import {STORE, UPDATE, DELETE} from 'modelActionTypes';
+import {STORE, UPDATE, DELETE} from './modelActionTypes';
 
 export const saveMedal = (m) => ({
     type: STORE,

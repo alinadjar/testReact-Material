@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 
 
@@ -16,7 +16,13 @@ import Slide3 from './img/slide3.png';
 
 import IsolatedTable from './IsolatedTable';
 
+import {connect} from 'react-redux';
 
+const mapStateToProps = (storeData) => ({
+  medals: storeData.badges
+})
+
+const ElevatedTable = connect(mapStateToProps, null)(IsolatedTable);
 
 
 class App extends Component {
@@ -50,16 +56,16 @@ class App extends Component {
             <div className="App" style={{ padding: '12%' }}>
               <ul className="nav nav-tabs" style={{ position: "absolute", top: 0 }}>
                 <li className="nav-item">
-                  <a className="nav-link active" href="#">Active</a>
+                  <a className="nav-link active" >Active</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Link</a>
+                  <a className="nav-link" >Link</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Another link</a>
+                  <a className="nav-link" >Another link</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link disabled" href="#">Disabled</a>
+                  <a className="nav-link disabled" >Disabled</a>
                 </li>
               </ul>
   
@@ -80,7 +86,7 @@ class App extends Component {
                     <div className="card-body">
                       <h5 className="card-title">Card title</h5>
                       <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" className="btn btn-primary">Go somewhere</a>
+                      <a   className="btn btn-primary">Go somewhere</a>
                     </div>
                   </div>
                 </div>
@@ -146,31 +152,31 @@ class App extends Component {
                 <div className="col-3">
                   <ul className="list-group bmd-list-group-sm">
                     <li className="list-group-item">Text</li>
-                    <a href="#" className="list-group-item">Link item</a>
+                    <a   className="list-group-item">Link item</a>
                     <button type="button" className="list-group-item">Button item</button>
-                    <a href="#" className="list-group-item active">Active link item</a>
-                    <a href="#" className="list-group-item disabled">Disabled item</a>
+                    <a   className="list-group-item active">Active link item</a>
+                    <a   className="list-group-item disabled">Disabled item</a>
                   </ul>
   
                   <div>
                     <div className="btn-group">
                       <button className="btn dropdown-toggle" type="button" id="buttonMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown
-              </button>
+                      </button>
                       <div className="dropdown-menu" aria-labelledby="buttonMenu1">
-                        <a className="dropdown-item" href="#">Action</a>
-                        <a className="dropdown-item" href="#">Another action</a>
-                        <a className="dropdown-item" href="#">Something else here</a>
+                        <a className="dropdown-item"  >Action</a>
+                        <a className="dropdown-item"  >Another action</a>
+                        <a className="dropdown-item"  >Something else here</a>
                       </div>
                     </div>
                   </div>
                   <div>
                     <button type="button" className="btn btn-secondary" data-toggle="snackbar" data-content="Free fried chicken here! <a href='https://example.org' class='btn btn-info'>Check it out</a>" data-html-allowed="true" data-timeout="0">
                       Snackbar
-            </button>
+                    </button>
                     <button type="button" className="btn btn-secondary" data-toggle="snackbar" data-style="toast" data-content="Fried chicken out of stock.">
                       Toast
-            </button>
+                    </button>
                   </div>
                 </div>
                 <div className="col">
@@ -248,7 +254,7 @@ class App extends Component {
                     </div>
                   </form>
   
-                  <IsolatedTable  />
+                  <ElevatedTable  />                  
                 </div>
               </div>
             </div>

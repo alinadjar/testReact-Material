@@ -10,7 +10,7 @@ class IsolatedTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            badgeList: []
+            badgeList: this.props.medals
         }
 
         this.dataSource = new RestDataSource('http://192.168.87.62:7799/api/Login/test',
@@ -28,55 +28,71 @@ class IsolatedTable extends Component {
         //     () => this.setState({ badgeList: this.state.badgeList.filter(p => p.id !== badge.id) })
         // );
 
-        this.setState({ badgeList: this.state.badgeList.filter(p => p.id !== badge.id)});
+        this.setState({ badgeList: this.state.badgeList.filter(p => p.id !== badge.id) });
     }
 
 
     render() {
         return (
-            <table className="table table-sm table-striped table-bordered">
-                <thead>
-                    <tr><th colSpan="5"
-                        className="bg-info text-white text-center h4 p-2">
-                        (Isolated) Products
+            <React.Fragment>
+                <table className="table table-sm table-striped table-bordered">
+                    <thead>
+                        <tr><th colSpan="5"
+                            className="bg-info text-white text-center h4 p-2">
+                            (Isolated) Products
                     </th></tr>
-                    <tr>
-                        <th>ID</th><th>Name</th>
-                        <th className="text-right">Price</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        this.state.badgeList.map(p => <tr key={p.id}>
-                            <td>{p.id}</td><td>{p.name}</td>
-                            <td className="text-right">
-                                ${Number(p.price).toFixed(2)}
-                            </td>
-                            <td>
-                                {/* <Link className="btn btn-sm btn-warning mx-2"
+                        <tr>
+                            <th>ID</th><th>Name</th>
+                            <th className="text-right">Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.state.badgeList.map(p => <tr key={p.id}>
+                                <td>{p.id}</td><td>{p.name}</td>
+                                <td className="text-right">
+                                    ${Number(p.price).toFixed(2)}
+                                </td>
+                                <td>
+                                    {/* <Link className="btn btn-sm btn-warning mx-2"
                                     to={`/isolated/edit/${p.id}`}>
                                     Edit
                                 </Link> */}
-                                <button className="btn btn-sm btn-danger mx-2"
-                                    onClick={() => this.deleteBadge(p)}>
-                                    Delete
+                                    <button className="btn btn-sm btn-danger mx-2"
+                                        onClick={() => this.deleteBadge(p)}>
+                                        Delete
                                 </button>
-                            </td>
-                        </tr>)
-                    }
-                </tbody>
-            </table>
+                                </td>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
+                <button type="button" className="btn btn-primary" onClick={this.fetchData}>Fetch Data</button>
+            </React.Fragment>
         );
+    }
+
+    fetchData = () => {
+        this.dataSource.GetData(data => {
+            this.setState({ badgeList: data })
+            console.log(data);
+        });
     }
 
 
     componentDidMount() {
-        this.dataSource.GetData(data =>
-            {
+
+        this.setState({ badgeList: this.props.medals });
+        console.log(this.props.medals);
+        
+        {
+            this.state.badgeList === [] && 
+            this.dataSource.GetData(data => {
                 this.setState({ badgeList: data })
                 console.log(data);
-            });            
+            });
+        }
 
         // const { data: badgeList } = await Axios.get('http://192.168.87.62:7799/api/Login/test');
         // this.setState({ badgeList });

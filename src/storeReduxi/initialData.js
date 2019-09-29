@@ -1,6 +1,6 @@
 export const initialData = {
-    
+
     badges: [
-        { id: '1', name: 'GOLD', price: '999000'},
+        { id: '100', name: 'A', price: '95'},
     ]
 };
