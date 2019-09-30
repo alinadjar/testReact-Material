@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 
@@ -9,6 +9,8 @@ import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
 //import 'popper.js/dist/popper.js';
 //import 'popper.js/dist/popper';
 
+import { Link } from "react-router-dom";
+
 import Slide1 from './img/slide1.png';
 import Slide2 from './img/slide2.png';
 import Slide3 from './img/slide3.png';
@@ -16,18 +18,64 @@ import Slide3 from './img/slide3.png';
 
 import IsolatedTable from './IsolatedTable';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
+
+
+//--------------------------------------------------------------
 const mapStateToProps = (storeData) => ({
   medals: storeData.badges
 })
 
 const ElevatedTable = connect(mapStateToProps, null)(IsolatedTable);
+//--------------------------------------------------------------
+
+
+const lookup = {
+  "react": [
+    { id: '1', text: '1' },
+    { id: '2', text: '2' },
+    { id: '3', text: '3' },
+    { id: '4', text: '4' },
+    { id: '5', text: '5' }
+  ],
+  "python": [
+    { id: 'p1', text: 'p1' },
+    { id: 'p2', text: 'p2' }
+  ],
+  "java": [
+    { id: 'a', text: 'a' },
+    { id: 'b', text: 'b' },
+    { id: 'c', text: 'c' },
+    { id: 'd', text: 'd' },
+    { id: 'e', text: 'e' }
+  ]
+}
 
 
 class App extends Component {
-  render()
-  {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      valueLg: ''
+    }
+  }
+
+  changeLanguage = e => {
+    this.setState({ valueLg: e.target.value });
+  }
+
+
+  render() {
+
+    //*********************************************************** */
+    const { valueLg } = this.state;
+    const options = lookup[valueLg] || [];
+
+
+
+
     return (
       <div className="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
         <header className="bmd-layout-header" style={{ backgroundColor: '#a8c9ef' }}>
@@ -56,20 +104,21 @@ class App extends Component {
             <div className="App" style={{ padding: '12%' }}>
               <ul className="nav nav-tabs" style={{ position: "absolute", top: 0 }}>
                 <li className="nav-item">
-                  <a className="nav-link active" >Active</a>
+                  <Link to="/" className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" >Link</a>
+                  <Link to="/about" className="nav-link">About</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" >Another link</a>
+                  <Link to="/about" className="nav-link">Contact</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link disabled" >Disabled</a>
+                  <Link to="/about" className="nav-link disabled">Others</Link>                  
                 </li>
               </ul>
-  
+
               <h4>Reference:</h4>
+              <Link to="/about" >About</Link>
               <h5>https://fezvrasta.github.io/bootstrap-material-design/docs/4.0/getting-started/introduction/</h5>
               <div className="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Holy guacamole!</strong> You should check in on some of those fields below.
@@ -78,19 +127,19 @@ class App extends Component {
                 </button>
               </div>
               <div className="row">
-  
-  
+
+
                 <div className="col-3">
                   <div className="card" style={{ width: '100%' }}>
                     <img className="card-img-top" src="..." alt="Card image cap" />
                     <div className="card-body">
                       <h5 className="card-title">Card title</h5>
                       <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a   className="btn btn-primary">Go somewhere</a>
+                      <a className="btn btn-primary">Go somewhere</a>
                     </div>
                   </div>
                 </div>
-  
+
                 <div className="col">
                   <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators">
@@ -119,11 +168,11 @@ class App extends Component {
                     </a>
                   </div>
                 </div>
-  
+
               </div>
-  
-  
-  
+
+
+
               <h1>BootStrap Material</h1>
               <div className="bmd-form-group bmd-collapse-inline pull-xs-right" style={{ backgroundColor: '#F5A', marginBottom: '20px' }}>
                 <button className="btn bmd-btn-icon" htmlFor="search" data-toggle="collapse" data-target="#collapse-search" aria-expanded="false" aria-controls="collapse-search">
@@ -144,20 +193,20 @@ class App extends Component {
                     <button className="dropdown-item" type="button">Another action</button>
                   </div>
                 </div>
-  
-  
-  
-  
-  
+
+
+
+
+
                 <div className="col-3">
                   <ul className="list-group bmd-list-group-sm">
                     <li className="list-group-item">Text</li>
-                    <a   className="list-group-item">Link item</a>
+                    <a className="list-group-item">Link item</a>
                     <button type="button" className="list-group-item">Button item</button>
-                    <a   className="list-group-item active">Active link item</a>
-                    <a   className="list-group-item disabled">Disabled item</a>
+                    <a className="list-group-item active">Active link item</a>
+                    <a className="list-group-item disabled">Disabled item</a>
                   </ul>
-  
+
                   <div>
                     <div className="btn-group">
                       <button className="btn dropdown-toggle" type="button" id="buttonMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -178,9 +227,26 @@ class App extends Component {
                       Toast
                     </button>
                   </div>
+                  <div>
+                    <p>Let's create inner-dependent selects:</p>
+                    <select id="lang" onChange={this.changeLanguage} value={this.state.valueLg} className="form-control">
+                      <option value="select">Select</option>
+                      <option selected={this.state.valueLg === "java"} value="java">Java</option>
+                      <option value="c++">C++</option>
+                      <option value="python">Python</option>
+                      <option value="react">React</option>
+                      <option value="nodeJs">NodeJs</option>
+                    </select>
+                    <p></p>
+                    <p>{this.state.valueLg}</p>
+                    <select id="versioning" onChange={(e) => alert(e.target.value)} className="form-control">
+                      {options.map( (op, index) => <option key={index} value={op.id}>{op.text}</option>  )}                      
+                    </select>
+                  </div>
+
                 </div>
                 <div className="col">
-  
+
                   <form style={{ backgroundColor: '#FFF', padding: '30px', border: '2px solid red' }}>
                     <div className="form-group">
                       <label for="exampleInputEmail1" className="bmd-label-floating">Email address</label>
@@ -245,7 +311,7 @@ class App extends Component {
                     </div>
                     <button className="btn btn-default">Cancel</button>
                     <button type="submit" className="btn btn-primary btn-raised">Submit</button>
-  
+
                     <div className="form-group">
                       <label for="exampleInputEmail1" className="bmd-label-floating">Email address (two help blocks)</label>
                       <input type="email" className="form-control" id="exampleInputEmail1" />
@@ -253,20 +319,14 @@ class App extends Component {
                       <span className="bmd-help">And this is probably from a second plugin showing in a non-optimal way</span>
                     </div>
                   </form>
-  
-                  <ElevatedTable  />                  
+
+                  <ElevatedTable />
                 </div>
               </div>
             </div>
           </div>
         </main>
-      </div>
-  
-  
-  
-  
-  
-  
+      </div>           
     );
   }
 }

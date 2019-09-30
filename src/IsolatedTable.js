@@ -86,13 +86,13 @@ class IsolatedTable extends Component {
         this.setState({ badgeList: this.props.medals });
         console.log(this.props.medals);
         
-        {
+        
             this.state.badgeList === [] && 
             this.dataSource.GetData(data => {
                 this.setState({ badgeList: data })
                 console.log(data);
             });
-        }
+        
 
         // const { data: badgeList } = await Axios.get('http://192.168.87.62:7799/api/Login/test');
         // this.setState({ badgeList });

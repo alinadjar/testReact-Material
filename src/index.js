@@ -5,18 +5,24 @@ import App from './App';
 
 
 import { RequestError } from './webservice/RequestError';
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+//import About from './pages/About';
+
+import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 
 import dataStore from './storeReduxi';
 import { Provider } from 'react-redux';
 
+import About2 from './About2';
+
 import * as serviceWorker from './serviceWorker';
+
 
 ReactDOM.render(
     <Provider store={dataStore}>
         <Router>
             <Switch>
                 <Route path="/" exact={true} component={App} />
+                <Route path="/about" component={About2} />
                 <Route path="/error" component={RequestError} />
                 <Redirect to="/" />
             </Switch>
