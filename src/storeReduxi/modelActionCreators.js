@@ -1,4 +1,4 @@
-import {STORE, UPDATE, DELETE} from './modelActionTypes';
+import {STORE, UPDATE, DELETE, ToggleIsLoading} from './modelActionTypes';
 
 export const saveMedal = (m) => ({
     type: STORE,
@@ -16,4 +16,10 @@ export const updateMedal = (m) => ({
 export const deleteMedal = (m) => ({
     type: DELETE,
     payload: m
+})
+
+
+//-------------------------------------------------------------------------
+export const toggleStateIsLoading = () => ({
+    type: ToggleIsLoading
 })

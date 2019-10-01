@@ -1,7 +1,10 @@
+
+
 import React, { Component } from 'react';
 import { RestDataSource } from './webservice/RestDataSource';
 
 import Axios from "axios";
+import './loader.css';
 
 import { withRouter } from "react-router-dom";
 
@@ -10,7 +13,8 @@ class IsolatedTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            badgeList: this.props.medals
+            badgeList: this.props.medals || [],
+            //isLoading: false
         }
 
         this.dataSource = new RestDataSource('http://192.168.87.62:7799/api/Login/test',
@@ -69,30 +73,58 @@ class IsolatedTable extends Component {
                     </tbody>
                 </table>
                 <button type="button" className="btn btn-primary" onClick={this.fetchData}>Fetch Data</button>
+
+                {/* {this.state.isLoading &&
+                    <div style={{ backgroundColor: '#3e85c7db', width: '100%', height: '100%', position: 'absolute', top: 0, opacity: 0.3, zIndex: 9999 }}>
+                        <div class="loader"></div>
+                    </div>
+                } */}
             </React.Fragment>
         );
     }
 
     fetchData = () => {
-        this.dataSource.GetData(data => {
-            this.setState({ badgeList: data })
-            console.log(data);
-        });
+        //this.setState({ isLoading: true });
+
+        this.props.toggleLoading();
+
+        setTimeout(() => {
+            this.dataSource.GetData( data => {
+                this.setState({ badgeList: data});
+                console.log(data);
+                this.props.toggleLoading()
+            });
+        }, 1000);
+
+        // setTimeout(() => {
+        //     this.dataSource.GetData(data => {
+        //         this.setState({ badgeList: data, isLoading: false })
+        //         console.log(data);
+        //     });
+        // }, 2800);
+
+        // this.dataSource.GetData(data => {
+        //     this.setState({ badgeList: data, isLoading: false })
+        //     console.log(data);
+        // });
+
+
+        
     }
 
 
     componentDidMount() {
 
-        this.setState({ badgeList: this.props.medals });
+        this.setState({ badgeList: this.props.medals || [] });
         console.log(this.props.medals);
-        
-        
-            this.state.badgeList === [] && 
+
+
+        this.state.badgeList === [] &&
             this.dataSource.GetData(data => {
                 this.setState({ badgeList: data })
                 console.log(data);
             });
-        
+
 
         // const { data: badgeList } = await Axios.get('http://192.168.87.62:7799/api/Login/test');
         // this.setState({ badgeList });

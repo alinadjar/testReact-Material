@@ -6,4 +6,4 @@ import { logger } from './logMiddleware';
 
 export default createStore(simpleReducer, applyMiddleware(logger));
 
-export {saveMedal, updateMedal, deleteMedal} from './modelActionCreators';
+export {saveMedal, updateMedal, deleteMedal, toggleStateIsLoading} from './modelActionCreators';

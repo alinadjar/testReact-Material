@@ -1,5 +1,5 @@
 .loader {
-    position: absolute;
+    position: fixed;
     left:calc(50% - 4em);
     top:calc(45% - 4em);
     width: 4em;

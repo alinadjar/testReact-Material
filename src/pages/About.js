@@ -19,13 +19,22 @@ class About extends Component {
     }
 
     load = () => {
-        this.setState({ isLoading: true });
+        //this.setState({ isLoading: true });
         // fetch().then(()=>{
         //   // deal with data fetched
         //   this.setState({isLoading: false})
         // })
+
+        // alert('ready?');
+        // this.demoAsyncCall().then(() => this.setState({ isLoading: false }));
+
+
         alert('ready?');
-        this.demoAsyncCall().then(() => this.setState({ isLoading: false }));
+        this.setState({ isLoading: true }, () => {
+            
+            this.demoAsyncCall().then(() => this.setState({ isLoading: false }));
+
+        });
     }
 
     
@@ -48,7 +57,7 @@ class About extends Component {
 
         return (
             <div>                    
-                {this.state.isPageMounting ? <Pace color="#59F" height="3px" /> : null}            
+                {/* {this.state.isPageMounting ? <Pace color="#59F" height="3px" /> : null}             */}
 
                 <button className="btn btn-primary" onClick={this.load} >click to load</button>
 
