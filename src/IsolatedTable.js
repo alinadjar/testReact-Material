@@ -17,7 +17,7 @@ class IsolatedTable extends Component {
             //isLoading: false
         }
 
-        this.dataSource = new RestDataSource('http://192.168.87.62:7799/api/Login/test',
+        this.dataSource = new RestDataSource('http://192.168.87.62:7799/api/Test/Medals/',
             //(i) => { console.log('error') }
             (err) => this.props.history.push(`/error/${err}`)
         );
@@ -25,14 +25,17 @@ class IsolatedTable extends Component {
     }
 
     deleteBadge(badge) {
-        console.log(badge);
+        //console.log(badge);
 
         // this.dataSource.Delete(
         //     badge,
         //     () => this.setState({ badgeList: this.state.badgeList.filter(p => p.id !== badge.id) })
         // );
 
-        this.setState({ badgeList: this.state.badgeList.filter(p => p.id !== badge.id) });
+        const list = this.state.badgeList.filter(p => p.id !== badge.id);
+
+        this.setState({ badgeList: list });
+        console.log(this.state.badgeList);
     }
 
 
@@ -53,7 +56,9 @@ class IsolatedTable extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.state.badgeList.map(p => <tr key={p.id}>
+                            this.props.medals.map(p => <tr key={p.id}>
+                            {/* this.state.badgeList.map(p => <tr key={p.id}> */}
+                            
                                 <td>{p.id}</td><td>{p.name}</td>
                                 <td className="text-right">
                                     ${Number(p.price).toFixed(2)}
@@ -88,20 +93,66 @@ class IsolatedTable extends Component {
 
         this.props.toggleLoading();
 
-        setTimeout(() => {
-            this.dataSource.GetData( data => {
-                this.setState({ badgeList: data});
-                console.log(data);
-                this.props.toggleLoading()
-            });
-        }, 1000);
-
+        //----------------------------------------------------------------------
         // setTimeout(() => {
         //     this.dataSource.GetData(data => {
-        //         this.setState({ badgeList: data, isLoading: false })
+        //         this.setState({ badgeList: data })
         //         console.log(data);
+        //         this.props.toggleLoading();
         //     });
         // }, 2800);
+
+        setTimeout( () => {
+
+            new Promise((resolve, reject) => {
+                this.props.getDATA();
+                resolve();
+            }).then( ()=> {
+                console.log('now inside then..................');
+                this.props.toggleLoading();
+
+
+                // this.setState( { badgeList : this.props.medals }, () => {
+                //     console.log(this.state.badgeList);
+                // } );
+
+
+                debugger;
+                this.setState({ badgeList: this.props.medals || [] });
+                // this.setState( (state) => {
+                //     return{
+
+                //     }
+                //     state.badgeList = [{ id: '888', name: '888', price: '888'}];
+                //     this.props.medals.forEach(element => {
+                //         state.badgeList.concat(element);
+                //         console.log(element);
+                //     });
+                // });
+
+
+                // this.setState(prevState => {
+                //     return { // we must return an object for setState
+                //         badgeList: this.props.medals
+                //     } 
+                //   });
+
+                 
+            }).catch((error) => {
+                console.log('your promise failed .....');
+                this.props.toggleLoading();
+            });
+
+
+            
+
+            
+           
+        }, 2800);
+
+
+
+        
 
         // this.dataSource.GetData(data => {
         //     this.setState({ badgeList: data, isLoading: false })
@@ -115,15 +166,16 @@ class IsolatedTable extends Component {
 
     componentDidMount() {
 
+        debugger;
         this.setState({ badgeList: this.props.medals || [] });
-        console.log(this.props.medals);
+        // console.log('Table:componentDidMount: #####  '+this.props.medals);
 
 
-        this.state.badgeList === [] &&
-            this.dataSource.GetData(data => {
-                this.setState({ badgeList: data })
-                console.log(data);
-            });
+        // this.state.badgeList === [] &&
+        //     this.dataSource.GetData(data => {
+        //         this.setState({ badgeList: data });
+        //         console.log(data);
+        //     });
 
 
         // const { data: badgeList } = await Axios.get('http://192.168.87.62:7799/api/Login/test');
@@ -134,6 +186,8 @@ class IsolatedTable extends Component {
         //  Axios.get('http://192.168.87.62:7799/api/Login/test')
         //     .then(response => console.log(response.data));
     }
+
+
 }
 
 export default withRouter(IsolatedTable);

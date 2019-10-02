@@ -26,11 +26,11 @@ export const MAIN = connect(mapStateToProps, mapDispatchToProps)(
 
                     {this.props.isNowLoading &&
                         <div style={{ backgroundColor: '#3e85c7db', width: '100%', height: '100%', position: 'fixed', top: 0, opacity: 0.3, zIndex: 9999 }}>
-                            <div class="loader"></div>
+                            <div className="loader"></div>
                         </div>
                     }
 
-                    <button onClick={()=>{ this.props.toggleLoading() }}>toggle</button>                    
+                    {/* <button onClick={()=>{ this.props.toggleLoading() }}>toggle</button>                     */}
                 </div>
             );
         }

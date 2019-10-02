@@ -1,4 +1,4 @@
-import { STORE, UPDATE, DELETE, ToggleIsLoading } from './modelActionTypes';
+import { STORE, UPDATE, DELETE, ToggleIsLoading, CLEAR_BADGEs } from './modelActionTypes';
 import { initialData } from './initialData';
 
 export default function (storeData, action) {
@@ -19,10 +19,16 @@ export default function (storeData, action) {
                 ...storeData,
                 badges: storeData.badges.filter(i => i.id !== action.payload.id)
             }
+        case CLEAR_BADGEs:
+            return {
+                ...storeData,
+                badges: []
+            }
+            break;
         case ToggleIsLoading:
             return {
                 ...storeData,
-                isLoading: ! storeData.isLoading
+                isLoading: !storeData.isLoading
             }
 
         default:

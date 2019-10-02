@@ -19,22 +19,14 @@ import Slide3 from './img/slide3.png';
 import IsolatedTable from './IsolatedTable';
 
 
-import { connect } from 'react-redux';
-import { toggleStateIsLoading } from './storeReduxi';
+import {TableConnector} from './storeReduxi/Connector/TableConnector';
+
 
 
 //--------------------------------------------------------------
-const mapStateToProps = (storeData) => ({
-  medals: storeData.badges,
-  isNowLoading: storeData.isLoading
-})
 
 
-const mapDispatchToProps = {
-  toggleLoading: toggleStateIsLoading
-}
-
-const ElevatedTable = connect(mapStateToProps, mapDispatchToProps)(IsolatedTable);
+const ElevatedTable = TableConnector(IsolatedTable);
 //--------------------------------------------------------------
 
 
@@ -566,7 +558,6 @@ class App extends Component {
 
 
               <ElevatedTable />
-              {/* <IsolatedTable /> */}
             </div>
           </div>
         </div>
