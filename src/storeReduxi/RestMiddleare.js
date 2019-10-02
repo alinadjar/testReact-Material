@@ -23,8 +23,11 @@ export const myRestMiddleware = (apiURL) => {
             case FETCH_OVERWRITE_DATA:
                 next({ type: CLEAR_BADGEs });
 
+                
+
                 _datasource.GetData(data => {
 
+                    action.fxx(data);
                     
                     data.forEach(element => {
                         next({

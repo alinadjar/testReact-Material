@@ -56,8 +56,8 @@ class IsolatedTable extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.props.medals.map(p => <tr key={p.id}>
-                            {/* this.state.badgeList.map(p => <tr key={p.id}> */}
+                            // this.props.medals.map(p => <tr key={p.id}>
+                            this.state.badgeList.map(p => <tr key={p.id}> 
                             
                                 <td>{p.id}</td><td>{p.name}</td>
                                 <td className="text-right">
@@ -105,7 +105,7 @@ class IsolatedTable extends Component {
         setTimeout( () => {
 
             new Promise((resolve, reject) => {
-                this.props.getDATA();
+                this.props.getDATA((res) => {this.state.badgeList = res;} );
                 resolve();
             }).then( ()=> {
                 console.log('now inside then..................');

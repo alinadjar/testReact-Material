@@ -27,9 +27,10 @@ export const getData = () => {
 }
 
 
-export const fetchOverwriteData = () => {
+export const fetchOverwriteData = (f) => {
     return {
         type: FETCH_OVERWRITE_DATA,
+        fxx: f
     }
 }
 
