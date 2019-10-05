@@ -21,7 +21,7 @@ export class RestDataSource {
     }
 
     async Update(data, callback) {
-        this.SendRequest("put", `${this.BASE_URL}/${data.id}`, callback, data);
+        this.SendRequest("put", this.BASE_URL, callback, data);
     }
 
     async Delete(data, callback) {

@@ -39,6 +39,7 @@ export const myRestMiddleware = (apiURL) => {
                 });
                 break;
             case STORE:
+                debugger;
                 _datasource.Store(action.payload, data => {
 
                     next({
@@ -59,7 +60,8 @@ export const myRestMiddleware = (apiURL) => {
                 });
                 break;
             case DELETE:
-                _datasource.Delete(action.payload.id,
+                debugger;
+                _datasource.Delete(action.payload,
                     () => { next(action) });
                 break;
             default:

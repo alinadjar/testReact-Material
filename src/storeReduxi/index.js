@@ -12,7 +12,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 //export default createStore(simpleReducer,  applyMiddleware(logger));
 
 export default createStore(simpleReducer, composeWithDevTools(
-    applyMiddleware(logger, myRestMiddleware('http://192.168.87.62:7799/api/Test/Medals/') ),
+    applyMiddleware(logger, myRestMiddleware('http://localhost:63676/api/Test/Medals/') ),
     // other store enhancers if any
   ));
 

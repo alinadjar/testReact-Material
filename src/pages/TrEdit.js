@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { saveMedal, updateMedal, deleteMedal, fetchOverwriteData } from '../storeReduxi';
+import { saveMedal, updateMedal, deleteMedal, fetchOverwriteData, toggleStateIsLoading } from '../storeReduxi';
 
 
 const mapStateToProps = storeData => ({
@@ -13,7 +13,8 @@ const mapDispatchToProps = {
     newMedal: saveMedal,
     modifyMedal: updateMedal,
     removeMedal: deleteMedal,
-    fetchData: fetchOverwriteData
+    fetchData: fetchOverwriteData,
+    toggleLoading: toggleStateIsLoading
 }
 
 const TrEdit = connect(mapStateToProps, mapDispatchToProps)(
@@ -213,22 +214,33 @@ const TrEdit = connect(mapStateToProps, mapDispatchToProps)(
         submitEdit = (inputObj) => {
             console.log(inputObj);
             this.closeModal();
+
+            this.props.toggleLoading();
+
+            this.props.modifyMedal(inputObj);
         }
 
         submitDelete = (inputObj) => {
             console.log(inputObj);
             this.closeModal();
+
+            this.props.toggleLoading();
+            this.props.removeMedal(inputObj);
         }
 
         submitADD = (inputObj) => {
             console.log(inputObj);
             this.closeModal();
+
+            this.props.toggleLoading();
+            this.props.newMedal(inputObj);
         }
 
 
 
         componentDidMount() {
-            this.props.fetchData(() => { });
+            this.props.toggleLoading();
+            this.props.fetchData(() => { this.props.toggleLoading();});
         }
 
 
