@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { toggleStateIsLoading } from './storeReduxi';
 
+import './loader.css';
+
 import { connect } from 'react-redux';
+
+
 
 const mapStateToProps = (storeData) => ({
     isNowLoading: storeData.isLoading
@@ -10,6 +14,7 @@ const mapStateToProps = (storeData) => ({
 const mapDispatchToProps = {
     toggleLoading: toggleStateIsLoading
 }
+
 
 export const MAIN = connect(mapStateToProps, mapDispatchToProps)(
 

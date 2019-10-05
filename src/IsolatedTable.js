@@ -57,8 +57,8 @@ class IsolatedTable extends Component {
                     <tbody>
                         {
                             // this.props.medals.map(p => <tr key={p.id}>
-                            this.state.badgeList.map(p => <tr key={p.id}> 
-                            
+                            this.state.badgeList.map(p => <tr key={p.id}>
+
                                 <td>{p.id}</td><td>{p.name}</td>
                                 <td className="text-right">
                                     ${Number(p.price).toFixed(2)}
@@ -79,6 +79,9 @@ class IsolatedTable extends Component {
                 </table>
                 <button type="button" className="btn btn-primary" onClick={this.fetchData}>Fetch Data</button>
 
+
+
+                
                 {/* {this.state.isLoading &&
                     <div style={{ backgroundColor: '#3e85c7db', width: '100%', height: '100%', position: 'absolute', top: 0, opacity: 0.3, zIndex: 9999 }}>
                         <div class="loader"></div>
@@ -102,12 +105,12 @@ class IsolatedTable extends Component {
         //     });
         // }, 2800);
 
-        setTimeout( () => {
+        setTimeout(() => {
 
             new Promise((resolve, reject) => {
-                this.props.getDATA((res) => {this.state.badgeList = res;} );
+                this.props.getDATA((res) => { this.state.badgeList = res; });
                 resolve();
-            }).then( ()=> {
+            }).then(() => {
                 console.log('now inside then..................');
                 this.props.toggleLoading();
 
@@ -137,22 +140,22 @@ class IsolatedTable extends Component {
                 //     } 
                 //   });
 
-                 
+
             }).catch((error) => {
                 console.log('your promise failed .....');
                 this.props.toggleLoading();
             });
 
 
-            
 
-            
-           
+
+
+
         }, 2800);
 
 
 
-        
+
 
         // this.dataSource.GetData(data => {
         //     this.setState({ badgeList: data, isLoading: false })
@@ -160,7 +163,7 @@ class IsolatedTable extends Component {
         // });
 
 
-        
+
     }
 
 

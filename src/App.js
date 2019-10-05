@@ -350,7 +350,10 @@ class App extends Component {
               <Link to="/about" className="nav-link">Contact</Link>
             </li>
             <li className="nav-item">
-              <Link to="/about" className="nav-link disabled">Others</Link>
+              <Link to="/modtable" className="nav-link">Modal Table</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/portal" className="nav-link disabled">Portal</Link>
             </li>
           </ul>
 

@@ -21,6 +21,8 @@ import { Provider } from 'react-redux';
 import { MAIN } from './mainLayout';
 
 import * as serviceWorker from './serviceWorker';
+import Portal from './pages/portal';
+import ModalTable from './pages/modalTable';
 
 
 ReactDOM.render(
@@ -32,6 +34,8 @@ ReactDOM.render(
                 <Switch>
                     <Route path="/" exact={true} component={App} />
                     <Route path="/about" component={About} />
+                    <Route path="/portal" component={Portal} />
+                    <Route path="/modtable" component={ModalTable} />
                     <Route path="/error" component={RequestError} />
                     <Redirect to="/" />
                 </Switch>
