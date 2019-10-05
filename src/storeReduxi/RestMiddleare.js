@@ -26,7 +26,8 @@ export const myRestMiddleware = (apiURL) => {
                 
 
                 _datasource.GetData(data => {
-
+                    
+                    // fxx is the sender callback
                     action.fxx(data);
                     
                     data.forEach(element => {

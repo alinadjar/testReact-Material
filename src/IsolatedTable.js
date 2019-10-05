@@ -151,7 +151,7 @@ class IsolatedTable extends Component {
 
 
 
-        }, 2800);
+        }, 2000);
 
 
 

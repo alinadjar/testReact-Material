@@ -23,6 +23,7 @@ import { MAIN } from './mainLayout';
 import * as serviceWorker from './serviceWorker';
 import Portal from './pages/portal';
 import ModalTable from './pages/modalTable';
+import TrEdit from './pages/TrEdit';
 
 
 ReactDOM.render(
@@ -36,6 +37,7 @@ ReactDOM.render(
                     <Route path="/about" component={About} />
                     <Route path="/portal" component={Portal} />
                     <Route path="/modtable" component={ModalTable} />
+                    <Route path="/tredit" component={TrEdit} />
                     <Route path="/error" component={RequestError} />
                     <Redirect to="/" />
                 </Switch>

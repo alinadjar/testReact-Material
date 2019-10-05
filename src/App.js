@@ -353,6 +353,9 @@ class App extends Component {
               <Link to="/modtable" className="nav-link">Modal Table</Link>
             </li>
             <li className="nav-item">
+              <Link to="/tredit" className="nav-link">TrEdit</Link>
+            </li>
+            <li className="nav-item">
               <Link to="/portal" className="nav-link disabled">Portal</Link>
             </li>
           </ul>
