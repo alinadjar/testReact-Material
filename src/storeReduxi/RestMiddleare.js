@@ -41,7 +41,7 @@ export const myRestMiddleware = (apiURL) => {
             case STORE:
                 debugger;
                 _datasource.Store(action.payload, data => {
-
+                    action.callbk();
                     next({
                         //type: STORE,
                         ...action,
@@ -50,19 +50,27 @@ export const myRestMiddleware = (apiURL) => {
                 });
                 break;
             case UPDATE:
+                    //debugger;
                 _datasource.Update(action.payload, data => {
 
+                    action.callbk();
                     next({
-                        //type: STORE,
+                        //type: UPDATE,
                         ...action,
                         payload: data
-                    })
+                    });
+                    
                 });
                 break;
             case DELETE:
-                debugger;
+                //debugger;
+
+                
                 _datasource.Delete(action.payload,
-                    () => { next(action) });
+                    () => { 
+                        action.callbk();
+                        next(action) ;
+                    });
                 break;
             default:
                 next(action);

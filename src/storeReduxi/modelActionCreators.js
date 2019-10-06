@@ -1,21 +1,24 @@
 import { STORE, UPDATE, DELETE, ToggleIsLoading, GET_DATA, FETCH_OVERWRITE_DATA, CLEAR_BADGEs } from './modelActionTypes';
 
-export const saveMedal = (m) => ({
+export const saveMedal = (m, cb) => ({
     type: STORE,
-    payload: m
+    payload: m,
+    callbk: cb
 })
 
 
 
-export const updateMedal = (m) => ({
+export const updateMedal = (m, cb) => ({
     type: UPDATE,
-    payload: m
+    payload: m,
+    callbk: cb
 })
 
 
-export const deleteMedal = (m) => ({
+export const deleteMedal = (m, cb) => ({
     type: DELETE,
-    payload: m
+    payload: m,
+    callbk: cb
 })
 
 

@@ -107,7 +107,7 @@ const TrEdit = connect(mapStateToProps, mapDispatchToProps)(
 
         setModalBody = () => {
 
-            debugger;
+            //debugger;
             //let selectedMedal = this.props.medals.filter(p => p.id === this.state.selectedID)[0];
             
 
@@ -213,27 +213,65 @@ const TrEdit = connect(mapStateToProps, mapDispatchToProps)(
 
         submitEdit = (inputObj) => {
             console.log(inputObj);
-            this.closeModal();
+            // this.closeModal();
 
             this.props.toggleLoading();
 
-            this.props.modifyMedal(inputObj);
+            new Promise((resolve, reject) => {
+                this.props.modifyMedal(inputObj, () => {resolve();} );
+            }).then(() => {
+                //alert('promise resolved .....................@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+                this.closeModal();
+                this.props.toggleLoading();
+            }, 
+            (err)=> {
+                console.log(err);
+                alert('Promise faced error');
+                this.props.toggleLoading();
+            });
+
+            
         }
 
         submitDelete = (inputObj) => {
             console.log(inputObj);
-            this.closeModal();
+            //this.closeModal();
 
             this.props.toggleLoading();
-            this.props.removeMedal(inputObj);
+
+            new Promise((resolve, reject) => {
+                this.props.removeMedal(inputObj, () => {resolve();} );
+            }).then(() => {
+                //alert('promise resolved .....................@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+                this.closeModal();
+                this.props.toggleLoading();
+            }, 
+            (err)=> {
+                console.log(err);
+                alert('Promise faced error');
+                this.props.toggleLoading();
+            });            
         }
 
         submitADD = (inputObj) => {
             console.log(inputObj);
-            this.closeModal();
+            //this.closeModal();
 
             this.props.toggleLoading();
-            this.props.newMedal(inputObj);
+
+            new Promise((resolve, reject) => {
+                this.props.newMedal(inputObj, () => {resolve();} );
+            }).then(() => {
+                //alert('promise resolved .....................@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+                this.closeModal();
+                this.props.toggleLoading();
+            }, 
+            (err)=> {
+                console.log(err);
+                alert('Promise faced error');
+                this.props.toggleLoading();
+            });
+            
         }
 
 
@@ -274,7 +312,7 @@ const TrEdit = connect(mapStateToProps, mapDispatchToProps)(
                         </tbody>
                     </table>
 
-                    <button type="button" class="btn btn-outline-success" onClick={() => { this.setState({ modalType: 'NEW' }); }}>+ Create New</button>
+                    <button type="button" className="btn btn-outline-success" onClick={() => { this.setState({ modalType: 'NEW' }); }}>+ Create New</button>
                     {this.setModalBody()}
                 </div>
             );
