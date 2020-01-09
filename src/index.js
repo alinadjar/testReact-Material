@@ -24,6 +24,8 @@ import * as serviceWorker from './serviceWorker';
 import Portal from './pages/portal';
 import ModalTable from './pages/modalTable';
 import TrEdit from './pages/TrEdit';
+import Tjs from './Tjs';
+import TC from './TC';
 
 
 ReactDOM.render(
@@ -39,6 +41,8 @@ ReactDOM.render(
                     <Route path="/modtable" component={ModalTable} />
                     <Route path="/tredit" component={TrEdit} />
                     <Route path="/error" component={RequestError} />
+                    <Route path="/tjs" component={Tjs} />
+                    <Route path="/testConnect" component={TC} />
                     <Redirect to="/" />
                 </Switch>
             </Router>

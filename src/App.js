@@ -356,7 +356,13 @@ class App extends Component {
               <Link to="/tredit" className="nav-link">TrEdit</Link>
             </li>
             <li className="nav-item">
+              <Link to="/tjs" className="nav-link">TJS</Link>
+            </li>
+            <li className="nav-item">
               <Link to="/portal" className="nav-link disabled">Portal</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/testConnect" className="nav-link disabled">TC</Link>
             </li>
           </ul>
 
@@ -368,9 +374,8 @@ class App extends Component {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+
           <div className="row">
-
-
             <div className="col-3">
               <div className="card" style={{ width: '100%' }}>
                 <img className="card-img-top" src="..." alt="Card image cap" />

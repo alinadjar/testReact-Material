@@ -30,7 +30,6 @@ export class RestDataSource {
 
     async SendRequest(method, url, callback, data) {
         try {
-
             var response = (await Axios.request({
                 method: method, 
                 url: url,
@@ -38,6 +37,7 @@ export class RestDataSource {
             }));
 
             // debugger;
+            console.log(response);
             callback(response.data);
             // console.log(response);
             // console.log(response.data);

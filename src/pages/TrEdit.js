@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { saveMedal, updateMedal, deleteMedal, fetchOverwriteData, toggleStateIsLoading } from '../storeReduxi';
 
 
+import { ToggleIsLoading } from '../storeReduxi/modelActionTypes';
+
 const mapStateToProps = storeData => ({
     medals: storeData.badges
 })
@@ -282,6 +284,7 @@ const TrEdit = connect(mapStateToProps, mapDispatchToProps)(
         }
 
 
+
         render() {
             return (
                 <div style={{ margin: '0 auto', marginTop: '3em', width: '50%' }}>
@@ -314,6 +317,8 @@ const TrEdit = connect(mapStateToProps, mapDispatchToProps)(
 
                     <button type="button" className="btn btn-outline-success" onClick={() => { this.setState({ modalType: 'NEW' }); }}>+ Create New</button>
                     {this.setModalBody()}
+
+                    
                 </div>
             );
         }
